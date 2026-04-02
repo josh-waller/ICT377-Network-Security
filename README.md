@@ -48,6 +48,8 @@ base-configs/               # Starting topology configs (pre-security)
   RO/                       # Remote Office switch, host, server
   RS/                       # Remote Sites 1 & 2 base configs
   ISP/                      # ISP routers and internet host
+docs/
+  practical-exam-configs.md # 7 security tickets: ACLs, ZBPF policies, NAT, DMVPN fixes
 ```
 
 ## Technical Skills Demonstrated
