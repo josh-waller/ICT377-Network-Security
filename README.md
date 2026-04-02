@@ -2,6 +2,10 @@
 
 Multi-site enterprise network security implementation featuring three distinct firewall architectures protecting a DMVPN overlay with dual-ISP redundancy.
 
+## Topology
+
+![Network Topology](topology.png)
+
 ## Network Architecture
 
 | Site | Firewall Type | Key Security Features |
