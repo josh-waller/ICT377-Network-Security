@@ -1,0 +1,358 @@
+<mxfile host="app.diagrams.net" modified="2025-05-02T00:00:00.000Z" agent="Claude" version="21.0.0">
+  <diagram id="topology" name="Network Topology">
+    <mxGraphModel dx="1800" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1080" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ==================== INTERNET CLOUD ==================== -->
+        <mxCell id="internet_cloud" value="INTERNET" style="shape=mxgraph.cisco.clouds.internet_cloud;sketch=0;fillColor=#FFD700;strokeColor=#000000;fontStyle=1;fontSize=16;fontColor=#000000;verticalLabelPosition=middle;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="700" y="30" width="280" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- ==================== ISP ROUTERS ==================== -->
+        <mxCell id="isp101" value="ISP101&#xa;11.11.11.101" style="shape=mxgraph.cisco.routers.router;sketch=0;fillColor=#DDEEFF;strokeColor=#336699;fontStyle=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="580" y="200" width="75" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="isp103" value="ISP103&#xa;33.33.33.103" style="shape=mxgraph.cisco.routers.router;sketch=0;fillColor=#DDEEFF;strokeColor=#336699;fontStyle=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="750" y="280" width="75" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="isp102" value="ISP102&#xa;25.25.25.102" style="shape=mxgraph.cisco.routers.router;sketch=0;fillColor=#DDEEFF;strokeColor=#336699;fontStyle=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="930" y="200" width="75" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="isp104" value="ISP104&#xa;42.42.42.104" style="shape=mxgraph.cisco.routers.router;sketch=0;fillColor=#DDEEFF;strokeColor=#336699;fontStyle=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="280" width="75" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- ISP backbone links -->
+        <mxCell id="isp_link1" value="12.12.12.0/24" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#336699;fontSize=8;fontColor=#336699;" edge="1" parent="1" source="isp101" target="isp102">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="isp_link2" value="13.13.13.0/24" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#336699;fontSize=8;fontColor=#336699;" edge="1" parent="1" source="isp101" target="isp103">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="isp_link3" value="23.23.23.0/24" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#336699;fontSize=8;fontColor=#336699;" edge="1" parent="1" source="isp102" target="isp103">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="isp_link4" value="24.24.24.0/24" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#336699;fontSize=8;fontColor=#336699;" edge="1" parent="1" source="isp102" target="isp104">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="isp_link5" value="34.34.34.0/24" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#336699;fontSize=8;fontColor=#336699;" edge="1" parent="1" source="isp103" target="isp104">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- ISP to Internet -->
+        <mxCell id="isp101_inet" style="strokeColor=#DAA520;strokeWidth=3;" edge="1" parent="1" source="isp101" target="internet_cloud">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="isp102_inet" style="strokeColor=#DAA520;strokeWidth=3;" edge="1" parent="1" source="isp102" target="internet_cloud">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ==================== HQ SITE (LEFT) ==================== -->
+        <!-- HQ Area Background -->
+        <mxCell id="hq_bg" value="" style="rounded=1;whiteSpace=wrap;fillColor=#FFF2CC;strokeColor=#D6B656;opacity=30;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="180" width="500" height="860" as="geometry" />
+        </mxCell>
+        <mxCell id="hq_label" value="HEADQUARTERS" style="text;fontSize=16;fontStyle=1;fontColor=#B85C00;align=center;" vertex="1" parent="1">
+          <mxGeometry x="170" y="185" width="200" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- HQ-ASA-FW1 -->
+        <mxCell id="hq_asa" value="HQ-ASA-FW1&#xa;(Cisco ASA)" style="shape=mxgraph.cisco.security.firewall;sketch=0;fillColor=#FF4444;strokeColor=#CC0000;fontStyle=1;fontSize=11;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="220" y="230" width="75" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="hq_asa_label" value="OUTSIDE-1: 11.11.11.1&#xa;OUTSIDE-2: 33.33.33.1&#xa;INSIDE: 10.6.24.30/27" style="text;fontSize=8;fontColor=#660000;align=left;" vertex="1" parent="1">
+          <mxGeometry x="50" y="228" width="165" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- ASA to ISPs -->
+        <mxCell id="asa_isp101" value="11.11.11.0/24&#xa;(Primary)" style="strokeColor=#CC0000;strokeWidth=2;fontSize=8;fontColor=#CC0000;fontStyle=1;" edge="1" parent="1" source="hq_asa" target="isp101">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="asa_isp103" value="33.33.33.0/24&#xa;(Secondary)" style="strokeColor=#CC0000;strokeWidth=2;dashed=1;fontSize=8;fontColor=#CC0000;" edge="1" parent="1" source="hq_asa" target="isp103">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- HQ DMZ L2 Switch -->
+        <mxCell id="hq_dmz_sw" value="HQ-DMZ-L2-SW1" style="shape=mxgraph.cisco.switches.workgroup_switch;sketch=0;fillColor=#CCE5FF;strokeColor=#336699;fontStyle=1;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="60" y="340" width="75" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- ASA to DMZ switch (trunk) -->
+        <mxCell id="asa_dmzsw" value="Trunk&#xa;VLANs 2,10,11,12,99" style="strokeColor=#336699;fontSize=7;fontColor=#336699;" edge="1" parent="1" source="hq_asa" target="hq_dmz_sw">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- DMVPN Hub Routers -->
+        <mxCell id="hq_dmvpn11" value="HQ-DMVPN-11&#xa;(Primary Hub)&#xa;172.16.11.11" style="shape=mxgraph.cisco.routers.router;sketch=0;fillColor=#D5E8D4;strokeColor=#82B366;fontStyle=1;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="50" y="430" width="80" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="hq_dmvpn12" value="HQ-DMVPN-12&#xa;(Secondary Hub)&#xa;172.16.12.12" style="shape=mxgraph.cisco.routers.router;sketch=0;fillColor=#D5E8D4;strokeColor=#82B366;fontStyle=1;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="180" y="430" width="80" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- DMZ switch to DMVPN hubs -->
+        <mxCell id="dmzsw_dmvpn11" value="VLAN 11&#xa;172.16.11.0/24" style="strokeColor=#82B366;fontSize=7;fontColor=#336600;" edge="1" parent="1" source="hq_dmz_sw" target="hq_dmvpn11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dmzsw_dmvpn12" value="VLAN 12&#xa;172.16.12.0/24" style="strokeColor=#82B366;fontSize=7;fontColor=#336600;" edge="1" parent="1" source="hq_dmz_sw" target="hq_dmvpn12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- DMZ Server -->
+        <mxCell id="hq_dmz_srv" value="HQ-DMZ-SRV1&#xa;172.16.10.10" style="shape=mxgraph.cisco.servers.standard_server;sketch=0;fillColor=#E6D0DE;strokeColor=#996699;fontStyle=0;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="30" y="530" width="45" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="dmzsw_srv" value="VLAN 10" style="strokeColor=#996699;fontSize=7;fontColor=#996699;" edge="1" parent="1" source="hq_dmz_sw" target="hq_dmz_srv">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- DMZ Guest -->
+        <mxCell id="hq_dmz_guest" value="HQ-DMZ-GUEST1&#xa;DHCP (172.16.99.x)" style="shape=mxgraph.cisco.computers_and_peripherals.laptop;sketch=0;fillColor=#F5F5F5;strokeColor=#999999;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="140" y="535" width="50" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="dmzsw_guest" value="VLAN 99" style="strokeColor=#999999;fontSize=7;fontColor=#999999;" edge="1" parent="1" source="hq_dmz_sw" target="hq_dmz_guest">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- HQ Internal L3 Switch -->
+        <mxCell id="hq_l3sw" value="HQ-INT-L3-SW1&#xa;10.6.24.1/27" style="shape=mxgraph.cisco.switches.layer_3_switch;sketch=0;fillColor=#CCE5FF;strokeColor=#336699;fontStyle=1;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="330" y="390" width="80" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- ASA to L3 Switch -->
+        <mxCell id="asa_l3sw" value="10.6.24.0/27&#xa;(INSIDE)" style="strokeColor=#000000;strokeWidth=2;fontSize=8;fontColor=#000000;" edge="1" parent="1" source="hq_asa" target="hq_l3sw">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- L3 Switch to DMVPN hubs -->
+        <mxCell id="l3sw_dmvpn11" value="10.6.24.64/27" style="strokeColor=#82B366;fontSize=7;fontColor=#336600;" edge="1" parent="1" source="hq_l3sw" target="hq_dmvpn11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l3sw_dmvpn12" value="10.6.24.32/27" style="strokeColor=#82B366;fontSize=7;fontColor=#336600;" edge="1" parent="1" source="hq_l3sw" target="hq_dmvpn12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- HQ Internal L2 Switch -->
+        <mxCell id="hq_l2sw" value="HQ-INT-L2-SW1" style="shape=mxgraph.cisco.switches.workgroup_switch;sketch=0;fillColor=#CCE5FF;strokeColor=#336699;fontStyle=1;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="330" y="530" width="75" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- L3 to L2 switch (port-channel) -->
+        <mxCell id="l3sw_l2sw" value="Po12 (Trunk)" style="strokeColor=#336699;strokeWidth=3;fontSize=8;fontColor=#336699;" edge="1" parent="1" source="hq_l3sw" target="hq_l2sw">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- HQ Internal Hosts/Servers -->
+        <mxCell id="hq_vl35" value="HQ-VL35-SRV1&#xa;10.6.35.35" style="shape=mxgraph.cisco.servers.standard_server;sketch=0;fillColor=#E6D0DE;strokeColor=#996699;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="220" y="630" width="45" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="hq_vl40" value="HQ-VL40-HOST1&#xa;10.6.40.40" style="shape=mxgraph.cisco.computers_and_peripherals.pc;sketch=0;fillColor=#F5F5F5;strokeColor=#666666;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="290" y="640" width="40" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="hq_vl50" value="HQ-VL50-HOST1&#xa;10.6.50.50" style="shape=mxgraph.cisco.computers_and_peripherals.pc;sketch=0;fillColor=#F5F5F5;strokeColor=#666666;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="355" y="640" width="40" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="hq_vl100" value="HQ-VL100-HOST&#xa;10.6.100.100" style="shape=mxgraph.cisco.computers_and_peripherals.pc;sketch=0;fillColor=#F5F5F5;strokeColor=#666666;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="420" y="640" width="40" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- L2 switch to hosts -->
+        <mxCell id="l2_vl35" value="VL35" style="strokeColor=#996699;fontSize=7;fontColor=#996699;" edge="1" parent="1" source="hq_l2sw" target="hq_vl35">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_vl40" value="VL40" style="strokeColor=#666666;fontSize=7;fontColor=#666666;" edge="1" parent="1" source="hq_l2sw" target="hq_vl40">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_vl50" value="VL50" style="strokeColor=#666666;fontSize=7;fontColor=#666666;" edge="1" parent="1" source="hq_l2sw" target="hq_vl50">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_vl100" value="VL100" style="strokeColor=#666666;fontSize=7;fontColor=#666666;" edge="1" parent="1" source="hq_l2sw" target="hq_vl100">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- OSPF Area labels for HQ -->
+        <mxCell id="ospf_area0" value="OSPF Area 0" style="text;fontSize=11;fontStyle=1;fontColor=#0000CC;align=center;" vertex="1" parent="1">
+          <mxGeometry x="290" y="470" width="100" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- ==================== REMOTE OFFICE (RIGHT) ==================== -->
+        <!-- RO Area Background -->
+        <mxCell id="ro_bg" value="" style="rounded=1;whiteSpace=wrap;fillColor=#DEEBF7;strokeColor=#6699CC;opacity=30;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="1200" y="30" width="350" height="490" as="geometry" />
+        </mxCell>
+        <mxCell id="ro_label" value="REMOTE OFFICE" style="text;fontSize=16;fontStyle=1;fontColor=#003366;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1275" y="35" width="200" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- RO-ZBPF-FW1 -->
+        <mxCell id="ro_zbpf" value="RO-ZBPF-FW1&#xa;(Zone-Based Policy FW)" style="shape=mxgraph.cisco.security.firewall;sketch=0;fillColor=#FF8800;strokeColor=#CC6600;fontStyle=1;fontSize=10;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="1320" y="130" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ro_zbpf_label" value="E0/1: 21.21.21.2 (Primary ISP)&#xa;E0/0: 25.25.25.2 (Secondary ISP)" style="text;fontSize=8;fontColor=#663300;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1220" y="100" width="180" height="25" as="geometry" />
+        </mxCell>
+
+        <!-- RO to ISPs -->
+        <mxCell id="ro_isp101" value="21.21.21.0/24&#xa;(Primary)" style="strokeColor=#CC6600;strokeWidth=2;fontSize=8;fontColor=#CC6600;fontStyle=1;" edge="1" parent="1" source="ro_zbpf" target="isp101">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ro_isp102" value="25.25.25.0/24&#xa;(Secondary)" style="strokeColor=#CC6600;strokeWidth=2;dashed=1;fontSize=8;fontColor=#CC6600;" edge="1" parent="1" source="ro_zbpf" target="isp102">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- RO L2 Switch -->
+        <mxCell id="ro_l2sw" value="RO-INS-L2-SW1" style="shape=mxgraph.cisco.switches.workgroup_switch;sketch=0;fillColor=#CCE5FF;strokeColor=#336699;fontStyle=1;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="1330" y="270" width="75" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="ro_zbpf_sw" value="Trunk&#xa;VLANs 100,101" style="strokeColor=#336699;fontSize=7;fontColor=#336699;" edge="1" parent="1" source="ro_zbpf" target="ro_l2sw">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- RO Hosts -->
+        <mxCell id="ro_srv" value="RO-INS-SRV1&#xa;10.7.0.100" style="shape=mxgraph.cisco.servers.standard_server;sketch=0;fillColor=#E6D0DE;strokeColor=#996699;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="1260" y="370" width="45" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="ro_host" value="RO-INS-HOST1&#xa;10.7.1.150" style="shape=mxgraph.cisco.computers_and_peripherals.pc;sketch=0;fillColor=#F5F5F5;strokeColor=#666666;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="1390" y="375" width="40" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="rosw_srv" value="VL100&#xa;10.7.0.0/24" style="strokeColor=#996699;fontSize=7;fontColor=#996699;" edge="1" parent="1" source="ro_l2sw" target="ro_srv">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rosw_host" value="VL101&#xa;10.7.1.0/24" style="strokeColor=#666666;fontSize=7;fontColor=#666666;" edge="1" parent="1" source="ro_l2sw" target="ro_host">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ro_ospf" value="OSPF Area 1" style="text;fontSize=11;fontStyle=1;fontColor=#0000CC;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1310" y="340" width="100" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- ==================== REMOTE SITE 1 (BOTTOM RIGHT) ==================== -->
+        <mxCell id="rs1_bg" value="" style="rounded=1;whiteSpace=wrap;fillColor=#E2EFDA;strokeColor=#82B366;opacity=30;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="1200" y="560" width="320" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="rs1_label" value="REMOTE SITE #1" style="text;fontSize=14;fontStyle=1;fontColor=#336600;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1270" y="565" width="180" height="25" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rs1_cbac" value="RS1-CBAC-FW1&#xa;(CBAC Firewall)" style="shape=mxgraph.cisco.security.firewall;sketch=0;fillColor=#66BB66;strokeColor=#336633;fontStyle=1;fontSize=10;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="1310" y="610" width="80" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="rs1_cbac_label" value="E0/0: 22.22.22.3 (ISP102)" style="text;fontSize=8;fontColor=#336600;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1220" y="595" width="160" height="15" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rs1_host" value="RS1-INS-HOST1&#xa;10.7.4.32" style="shape=mxgraph.cisco.computers_and_peripherals.pc;sketch=0;fillColor=#F5F5F5;strokeColor=#666666;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="1340" y="710" width="40" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="rs1_cbac_host" value="10.7.4.0/24" style="strokeColor=#666666;fontSize=7;fontColor=#666666;" edge="1" parent="1" source="rs1_cbac" target="rs1_host">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- RS1 to ISPs -->
+        <mxCell id="rs1_isp102" value="22.22.22.0/24&#xa;(Primary)" style="strokeColor=#336633;strokeWidth=2;fontSize=8;fontColor=#336633;fontStyle=1;" edge="1" parent="1" source="rs1_cbac" target="isp102">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rs1_isp104" value="44.44.44.0/24&#xa;(Backup)" style="strokeColor=#336633;strokeWidth=2;dashed=1;fontSize=8;fontColor=#336633;" edge="1" parent="1" source="rs1_cbac" target="isp104">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rs1_ospf" value="OSPF Area 1" style="text;fontSize=10;fontStyle=1;fontColor=#0000CC;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1310" y="690" width="80" height="16" as="geometry" />
+        </mxCell>
+
+        <!-- ==================== REMOTE SITE 2 (FAR BOTTOM RIGHT) ==================== -->
+        <mxCell id="rs2_bg" value="" style="rounded=1;whiteSpace=wrap;fillColor=#E2EFDA;strokeColor=#82B366;opacity=30;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="1200" y="810" width="320" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="rs2_label" value="REMOTE SITE #2" style="text;fontSize=14;fontStyle=1;fontColor=#336600;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1270" y="815" width="180" height="25" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rs2_cbac" value="RS2-CBAC-FW1&#xa;(CBAC Firewall)" style="shape=mxgraph.cisco.security.firewall;sketch=0;fillColor=#66BB66;strokeColor=#336633;fontStyle=1;fontSize=10;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="1310" y="860" width="80" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="rs2_cbac_label" value="E0/0: PPPoE (ISP104)&#xa;E0/1: 10.7.5.1/24" style="text;fontSize=8;fontColor=#336600;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1220" y="845" width="140" height="25" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rs2_host" value="RS2-INS-HOST1&#xa;10.7.5.150" style="shape=mxgraph.cisco.computers_and_peripherals.pc;sketch=0;fillColor=#F5F5F5;strokeColor=#666666;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="1340" y="960" width="40" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="rs2_cbac_host" value="10.7.5.0/24" style="strokeColor=#666666;fontSize=7;fontColor=#666666;" edge="1" parent="1" source="rs2_cbac" target="rs2_host">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- RS2 to ISP104 (PPPoE) -->
+        <mxCell id="rs2_isp104" value="42.42.42.0/24&#xa;(PPPoE)" style="strokeColor=#336633;strokeWidth=2;fontSize=8;fontColor=#336633;fontStyle=1;" edge="1" parent="1" source="rs2_cbac" target="isp104">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rs2_ospf" value="OSPF Area 1" style="text;fontSize=10;fontStyle=1;fontColor=#0000CC;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1310" y="940" width="80" height="16" as="geometry" />
+        </mxCell>
+
+        <!-- ==================== DMVPN TUNNELS (Logical Overlay) ==================== -->
+        <!-- Primary tunnel -->
+        <mxCell id="tunnel11" value="Tunnel11 (Primary DMVPN)&#xa;10.66.64.0/24&#xa;IKEv2 / AES-GCM-256" style="strokeColor=#9900CC;strokeWidth=2;dashed=1;dashPattern=8 4;fontSize=8;fontColor=#9900CC;fontStyle=1;curved=1;" edge="1" parent="1" source="hq_dmvpn11" target="ro_zbpf">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="400" y="160" />
+              <mxPoint x="800" y="80" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <!-- Secondary tunnel -->
+        <mxCell id="tunnel12" value="Tunnel12 (Secondary DMVPN)&#xa;10.66.66.0/24&#xa;IKEv2 / AES-GCM-256" style="strokeColor=#CC66FF;strokeWidth=2;dashed=1;dashPattern=4 4;fontSize=8;fontColor=#CC66FF;curved=1;" edge="1" parent="1" source="hq_dmvpn12" target="ro_zbpf">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="500" y="190" />
+              <mxPoint x="900" y="120" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- InternetHost -->
+        <mxCell id="inet_host" value="InternetHost&#xa;90.0.0.x (DHCP)" style="shape=mxgraph.cisco.computers_and_peripherals.pc;sketch=0;fillColor=#F5F5F5;strokeColor=#666666;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="770" y="400" width="40" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="isp103_host" value="90.0.0.0/8" style="strokeColor=#666666;fontSize=7;fontColor=#666666;" edge="1" parent="1" source="isp103" target="inet_host">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ==================== LEGEND ==================== -->
+        <mxCell id="legend_bg" value="" style="rounded=1;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#999999;" vertex="1" parent="1">
+          <mxGeometry x="560" y="490" width="300" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_title" value="LEGEND" style="text;fontSize=12;fontStyle=1;fontColor=#333333;align=center;" vertex="1" parent="1">
+          <mxGeometry x="660" y="495" width="80" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend1" value="&#x2501;&#x2501; Primary ISP Link" style="text;fontSize=9;fontColor=#CC0000;align=left;" vertex="1" parent="1">
+          <mxGeometry x="580" y="520" width="150" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="legend2" value="- - - Secondary/Backup ISP Link" style="text;fontSize=9;fontColor=#CC0000;align=left;" vertex="1" parent="1">
+          <mxGeometry x="580" y="540" width="200" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="legend3" value="&#x2501;&#x2501; DMVPN Tunnel (IPsec Encrypted)" style="text;fontSize=9;fontColor=#9900CC;align=left;" vertex="1" parent="1">
+          <mxGeometry x="580" y="560" width="220" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="legend4" value="&#x2501;&#x2501; ISP Backbone" style="text;fontSize=9;fontColor=#336699;align=left;" vertex="1" parent="1">
+          <mxGeometry x="580" y="580" width="150" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_fw1" value="&#x25A0; ASA Firewall (HQ)" style="text;fontSize=9;fontColor=#CC0000;align=left;" vertex="1" parent="1">
+          <mxGeometry x="580" y="605" width="130" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_fw2" value="&#x25A0; Zone-Based Policy FW (RO)" style="text;fontSize=9;fontColor=#CC6600;align=left;" vertex="1" parent="1">
+          <mxGeometry x="580" y="625" width="190" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_fw3" value="&#x25A0; CBAC Firewall (RS1, RS2)" style="text;fontSize=9;fontColor=#336633;align=left;" vertex="1" parent="1">
+          <mxGeometry x="580" y="645" width="170" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_enc" value="Encryption: IKEv2 / AES-GCM-256 / ESP" style="text;fontSize=9;fontColor=#9900CC;fontStyle=2;align=left;" vertex="1" parent="1">
+          <mxGeometry x="580" y="665" width="250" height="16" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
