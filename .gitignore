@@ -1,0 +1,9 @@
+# Raw notepad extractions (drafts/fragments)
+notepad_configs/
+
+# Original submission files
+*.zip
+*.pdf
+
+# EVE-NG topology (large binary)
+*.unl
