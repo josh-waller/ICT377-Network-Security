@@ -70,4 +70,4 @@ base-configs/               # Starting topology configs (pre-security)
 
 ## Context
 
-University network security case study (ICT377) implementing enterprise-grade security across a multi-site topology. Each site uses a different firewall technology to demonstrate comparative understanding of Cisco security platforms.
+Enterprise network security project implementing production-grade security across a multi-site topology. Each site uses a different firewall technology to demonstrate comparative understanding of Cisco security platforms.
