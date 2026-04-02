@@ -48,7 +48,7 @@ base-configs/               # Starting topology configs (pre-security)
   RS/                       # Remote Sites 1 & 2 base configs
   ISP/                      # ISP routers and internet host
 docs/
-  practical-exam-configs.md # 7 security tickets: ACLs, ZBPF policies, NAT, DMVPN fixes
+  security-tickets.md       # 7 security tickets: ACLs, ZBPF policies, NAT, DMVPN fixes
 ```
 
 ## Technical Skills Demonstrated

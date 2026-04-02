@@ -13,4 +13,5 @@ configs/
 
 # Build scripts and reference images
 generate_topology.py
+generate_topology_v2.py
 topology-reference.png
