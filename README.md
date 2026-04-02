@@ -12,7 +12,7 @@ Multi-site enterprise network security implementation featuring three distinct f
 |------|--------------|----------------------|
 | **HQ** | Cisco ASA (Adaptive Security Appliance) | Dual outside interfaces, object NAT, per-ISP ACLs, SLA-based failover |
 | **Remote Office** | Zone-Based Policy Firewall (ZBPF) | IKEv2/AES-GCM-256 IPsec, zone-pair inspection, dual-ISP NAT/PAT with route-maps |
-| **Remote Site 2** | Context-Based Access Control (CBAC) | Stateful packet inspection, DMVPN spoke, PPPoE secondary WAN |
+| **Remote Sites** | Context-Based Access Control (CBAC) | Stateful packet inspection, DMVPN spoke, PPPoE secondary WAN |
 
 ## Topology Overview
 
@@ -42,7 +42,6 @@ Multi-site enterprise network security implementation featuring three distinct f
 completed-configs/          # Configured firewall devices (my work)
   HQ/HQ-ASA-FW1.cfg        # ASA firewall - dual ISP, object NAT, DMVPN ACLs
   RO/RO-ZBPF-FW1.cfg       # Zone-Based Policy Firewall - IKEv2, zone-pair security
-  RS2/RS2-CBAC-FW1.cfg      # CBAC firewall - stateful inspection, PPPoE WAN
 base-configs/               # Starting topology configs (pre-security)
   HQ/                       # HQ switches, DMVPN hubs, hosts, servers
   RO/                       # Remote Office switch, host, server

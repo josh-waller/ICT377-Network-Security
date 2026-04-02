@@ -1,9 +1,16 @@
 # Raw notepad extractions (drafts/fragments)
 notepad_configs/
 
+# Original EVE-NG extractions (duplicated in base-configs/)
+configs/
+
 # Original submission files
 *.zip
 *.pdf
 
 # EVE-NG topology (large binary)
 *.unl
+
+# Build scripts and reference images
+generate_topology.py
+topology-reference.png
